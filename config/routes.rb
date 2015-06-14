@@ -58,6 +58,6 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
   # You can have the root of your site routed with "root"
-  #root 'posts#index'
+  root 'posts#index'
 
 end
