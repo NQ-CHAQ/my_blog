@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_action :set_post, only:[:show, :edit, :update, :destroy]
   def index
     @posts = Post.all
 
@@ -6,17 +7,12 @@ class PostsController < ApplicationController
   end
 
   def show
-  @post = Post.find( params[:id] )
   end
 
   def edit
-  @post = Post.find( params[:id] )
   end
 
   def update
-  #更新するデータオブジェクトを取得する
-  @post = Post.find( params[:id] )
-
   #取得したパラメーターで上書きして保存
   @post.update_attributes( post_params )
 
@@ -38,7 +34,6 @@ class PostsController < ApplicationController
   end
 
   def destroy
-  @post = Post.find( params[:id] )
   @post.destroy
   redirect_to "/posts/"
   end
@@ -51,9 +46,11 @@ class PostsController < ApplicationController
       :title ,
       :body ,
       :category ,
-      :image_url ,
       )
   end
 
+  def set_post
+    @post = Post.find( params[:id] )
+  end
 
 end
