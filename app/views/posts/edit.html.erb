@@ -2,15 +2,16 @@
 <h1>ブログ記事編集</h1>
 <%= form_for @post ,url: {action: :update } do |f| %>
 <div class="form-group">
-<%= f.label :title %>
+<%= f.label "タイトル" %>
 <%= f.text_field :title , class: "form-control"%>
 </div>
 <div class="form-group">
-<%= f.label :title %>
-<%= f.text_field :category , class: "form-control"%>
+<%= f.label "カテゴリ"  %>
+<%# f.text_field :category , class: "form-control"%>
+<%= f.collection_select(:category_id, Category.all, :id, :title, class: "form-control") %>
 </div>
 <div class="form-group">
-<%= f.label :title %>
+<%= f.label "本文"  %>
 <%= f.text_area :body , class: "form-control"%>
 </div>
 <%= f.submit class: "btn btn-primary"%>
