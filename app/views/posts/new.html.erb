@@ -1,0 +1,16 @@
+<h1>新規登録の画面です</h1>
+<%= form_for @post do |f| %>
+<div class="form-group">
+<%= f.label :title %>
+<%= f.text_field :title , class: "form-control"%>
+</div>
+<div class="form-group">
+<%= f.label :title %>
+<%= f.text_field :category , class: "form-control"%>
+</div>
+<div class="form-group">
+<%= f.label :title %>
+<%= f.text_area :body , class: "form-control"%>
+</div>
+<%= f.submit class: "btn btn-primary"%>
+<% end %>
