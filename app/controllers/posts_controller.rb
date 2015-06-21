@@ -1,8 +1,12 @@
 class PostsController < ApplicationController
   before_action :set_post, only:[:show, :edit, :update, :destroy]
+  before_action :authenticate_writter!, only:[ :edit, :update, :destroy]
   def index
-    @posts = Post.all
+    #@posts = Post.all
+    #@posts = Post.page( params[:page] )
 
+    #modelで定義した最新記事５件のみ表示用インスタンス
+    @new_posts = Post.find_newest_article()
     @author = Author.find(1)
   end
 
@@ -38,13 +42,12 @@ class PostsController < ApplicationController
   redirect_to "/posts/"
   end
 
-
   private
   def post_params
     # params.rewuire(:key).permit(:filter)
     params.require(:post).permit(
       :title ,
-      :body ,
+      :body  ,
       :category_id,
       )
   end
@@ -52,5 +55,7 @@ class PostsController < ApplicationController
   def set_post
     @post = Post.find( params[:id] )
   end
+
+
 
 end
