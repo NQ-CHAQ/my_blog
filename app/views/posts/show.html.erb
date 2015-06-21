@@ -8,4 +8,23 @@
 <hr>
 <%= link_to '編集', edit_post_path ,class: "btn btn-default"%>
 <%= link_to '削除', post_path ,method: :delete , class: "btn btn-danger"%>
+
+<hr>
+<h2>コメントはこちら</h2>
+<% @post.comments.each do |comment|  %>
+<p><%= comment.body %></p>
+<% end %>
+<%= form_for @comment ,url: { controller: :comments, action: :create } do |f| %>
+   <div class="form-group">
+      <%= f.label :body, "コメント" %><br />
+      <%= f.text_area :body, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+    <%= f.hidden_field :post_id , value: @post.id %>
+    <%= f.hidden_field :writter_id , value: current_writter.id %>
+    <%= f.submit "投稿する" %>
+    </div>
+
+<% end %>
 </div>

@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only:[:show, :edit, :update, :destroy]
-  before_action :authenticate_writter!, only:[ :edit, :update, :destroy]
+  before_action :authenticate_writter!
   def index
     #@posts = Post.all
     #@posts = Post.page( params[:page] )
@@ -11,6 +11,7 @@ class PostsController < ApplicationController
   end
 
   def show
+    @comment = Comment.new
   end
 
   def edit

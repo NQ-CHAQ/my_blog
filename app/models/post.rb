@@ -1,4 +1,6 @@
 class Post < ActiveRecord::Base
+  has_many :comments
+
   paginates_per 5
 
   def self.find_newest_article
